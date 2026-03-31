@@ -14,7 +14,8 @@ export default function Home() {
           ================================================= */}
       <section className="hero-single">
         <div className="hero-bg-container">
-          <img src="/hero-bg.jpg" alt="" className="hero-img-bg" />
+          {/* Updated to .png to match your uploaded file */}
+          <img src="/edited-image.png" alt="Project Broker Hero" className="hero-img-bg" />
           <div className="hero-overlay-premium" />
         </div>
 
@@ -123,7 +124,7 @@ export default function Home() {
       </section>
 
       {/* =================================================
-          5. THE MUTUAL PROTECTION FRAMEWORK (NEW)
+          5. THE MUTUAL PROTECTION FRAMEWORK
           ================================================= */}
       <section className="protection-section">
         <div className="protection-container">
@@ -133,7 +134,6 @@ export default function Home() {
           </div>
 
           <div className="protection-grid">
-            {/* For The Client */}
             <div className="protection-card client-card">
               <div className="protection-icon">
                 <Lock size={36} color="#ffffff" />
@@ -142,20 +142,19 @@ export default function Home() {
               <ul className="protection-list">
                 <li>
                   <CheckCircle size={18} color="#c5a059" />
-                  <span><strong>Zero Deposit Flight Risk:</strong> Your funds are held by TradeSafe Escrow, not paid directly upfront to a stranger.</span>
+                  <span><strong>Zero Deposit Flight Risk:</strong> Your funds are held by TradeSafe Escrow, not paid directly upfront.</span>
                 </li>
                 <li>
                   <CheckCircle size={18} color="#c5a059" />
-                  <span><strong>Milestone Control:</strong> You inspect and approve the work before any money is released from the trust.</span>
+                  <span><strong>Milestone Control:</strong> You inspect and approve the work before any money is released.</span>
                 </li>
                 <li>
                   <CheckCircle size={18} color="#c5a059" />
-                  <span><strong>Quality Assurance:</strong> You are protected from shoddy workmanship by our binding mediation agreements.</span>
+                  <span><strong>Quality Assurance:</strong> You are protected from shoddy workmanship by our binding agreements.</span>
                 </li>
               </ul>
             </div>
 
-            {/* For The Professional */}
             <div className="protection-card pro-card">
               <div className="protection-icon">
                 <ShieldCheck size={36} color="#0b0d17" />
@@ -164,15 +163,15 @@ export default function Home() {
               <ul className="protection-list pro-list">
                 <li>
                   <CheckCircle size={18} color="#0b0d17" />
-                  <span><strong>Guaranteed Compensation:</strong> The client's funds are secured in escrow <em>before</em> you ever arrive on site.</span>
+                  <span><strong>Guaranteed Compensation:</strong> The client's funds are secured in escrow <em>before</em> you arrive.</span>
                 </li>
                 <li>
                   <CheckCircle size={18} color="#0b0d17" />
-                  <span><strong>No Scope Creep:</strong> Clear contracts protect you from clients demanding extra free work outside the agreed milestones.</span>
+                  <span><strong>No Scope Creep:</strong> Clear contracts protect you from clients demanding extra free work.</span>
                 </li>
                 <li>
                   <CheckCircle size={18} color="#0b0d17" />
-                  <span><strong>End to Unpaid Invoices:</strong> Once the milestone is approved, funds are automatically released. No more chasing payments.</span>
+                  <span><strong>End to Unpaid Invoices:</strong> Once approved, funds are automatically released.</span>
                 </li>
               </ul>
             </div>
