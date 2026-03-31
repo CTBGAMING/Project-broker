@@ -1,0 +1,544 @@
+/* =================================================
+   1. PREMIUM FONTS & GLOBAL OVERRIDES
+   ================================================= */
+   @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Inter:wght@300;400;600;800&display=swap');
+
+   * {
+     box-sizing: border-box;
+     margin: 0;
+     padding: 0;
+   }
+   
+   /* =================================================
+      2. THEME VARIABLES
+      ================================================= */
+   
+   /* DARK MODE (default) */
+   :root, [data-theme="dark"] {
+     --bg-primary: #0b0d17;
+     --bg-secondary: #080a11;
+     --bg-card: #12141c;
+     --text-primary: #ffffff;
+     --text-secondary: #94a3b8;
+     --text-muted: #a0aec0;
+     --gold: #c5a059;
+     --gold-gradient: linear-gradient(135deg, #b38728 0%, #fcf6ba 45%, #c5a059 55%, #b38728 100%);
+     --border-gold: rgba(197, 160, 89, 0.2);
+     --border-gold-strong: rgba(197, 160, 89, 0.3);
+     --overlay-hero: linear-gradient(to bottom, rgba(11, 13, 23, 0.5) 0%, rgba(11, 13, 23, 0.75) 100%);
+     --card-gradient: linear-gradient(to top, rgba(11, 13, 23, 1) 0%, rgba(11, 13, 23, 0) 100%);
+     --trust-bar-bg: #080a11;
+     --toggle-bg: rgba(255, 255, 255, 0.05);
+     --toggle-border: rgba(197, 160, 89, 0.3);
+     --toggle-color: #c5a059;
+     --protection-subtitle: #c5a059;
+     --blueprint-bg: #080a11;
+   }
+   
+   /* LIGHT MODE */
+   [data-theme="light"] {
+     --bg-primary: #f5f3ff;
+     --bg-secondary: #ede9fe;
+     --bg-card: #ffffff;
+     --text-primary: #1a1035;
+     --text-secondary: #4c3d8f;
+     --text-muted: #6b7280;
+     --gold: #b38728;
+     --gold-gradient: linear-gradient(135deg, #b38728 0%, #fcf6ba 45%, #c5a059 55%, #b38728 100%);
+     --border-gold: rgba(139, 92, 246, 0.2);
+     --border-gold-strong: rgba(139, 92, 246, 0.35);
+     --overlay-hero: linear-gradient(to bottom, rgba(245, 243, 255, 0.3) 0%, rgba(237, 233, 254, 0.6) 100%);
+     --card-gradient: linear-gradient(to top, rgba(245, 243, 255, 1) 0%, rgba(245, 243, 255, 0) 100%);
+     --trust-bar-bg: #ede9fe;
+     --toggle-bg: rgba(139, 92, 246, 0.08);
+     --toggle-border: rgba(139, 92, 246, 0.3);
+     --toggle-color: #7c3aed;
+     --protection-subtitle: #7c3aed;
+     --blueprint-bg: #ede9fe;
+   }
+   
+   body, html, #root {
+     font-family: 'Inter', sans-serif !important;
+     background-color: var(--bg-primary) !important;
+     color: var(--text-primary) !important;
+     width: 100%;
+     overflow-x: hidden;
+     transition: background-color 0.3s ease, color 0.3s ease;
+   }
+   
+   h1, h2, h3, h4, .logo-text, .essence-title, .luxury-headline {
+     font-family: 'Playfair Display', serif !important;
+     font-weight: 700 !important;
+     color: var(--text-primary) !important;
+   }
+   
+   /* =================================================
+      3. NAVIGATION BAR
+      ================================================= */
+   .nav {
+     position: absolute !important;
+     top: 0 !important;
+     left: 0 !important;
+     width: 100% !important;
+     padding: 15px 50px !important;
+     display: flex !important;
+     justify-content: space-between !important;
+     align-items: center !important;
+     z-index: 9999 !important;
+     background: transparent !important;
+   }
+   
+   .logo {
+     display: flex !important;
+     align-items: center !important;
+     gap: 15px !important;
+     text-decoration: none !important;
+   }
+   
+   .logo-img-main {
+     height: 60px !important;
+     width: auto !important;
+     object-fit: contain !important;
+     transform: scale(1.5) !important;
+     transform-origin: left center !important;
+   }
+   
+   .nav-links {
+     display: flex !important;
+     gap: 30px !important;
+     align-items: center !important;
+   }
+   
+   .nav-links a:not(.nav-register), .nav-logout {
+     color: #ffffff !important;
+     text-decoration: none !important;
+     font-weight: 600 !important;
+     font-size: 13px !important;
+     letter-spacing: 1.5px !important;
+     text-transform: uppercase;
+   }
+   
+   /* Theme toggle button */
+   .theme-toggle {
+     display: flex !important;
+     align-items: center !important;
+     gap: 6px !important;
+     padding: 8px 16px !important;
+     border-radius: 30px !important;
+     background: var(--toggle-bg) !important;
+     border: 1px solid var(--toggle-border) !important;
+     color: var(--toggle-color) !important;
+     cursor: pointer !important;
+     font-weight: 700 !important;
+     font-size: 12px !important;
+     letter-spacing: 1px !important;
+     text-transform: uppercase !important;
+     transition: all 0.3s ease !important;
+     backdrop-filter: blur(10px) !important;
+   }
+   
+   .theme-toggle:hover {
+     opacity: 0.85 !important;
+   }
+   
+   /* =================================================
+      4. HERO BACKGROUND
+      ================================================= */
+   .hero-single {
+     position: relative !important;
+     height: 100vh !important;
+     width: 100% !important;
+     display: flex !important;
+     align-items: center !important;
+     overflow: hidden;
+     background-image: url('/hero-bg.png');
+     background-size: cover !important;
+     background-position: center !important;
+     background-repeat: no-repeat !important;
+   }
+   
+   .hero-bg-container {
+     display: none !important;
+   }
+   
+   .hero-img-bg {
+     display: none !important;
+   }
+   
+   .hero-overlay-premium {
+     position: absolute !important;
+     inset: 0 !important;
+     background: var(--overlay-hero) !important;
+     z-index: 2 !important;
+   }
+   
+   .hero-container {
+     position: relative !important;
+     z-index: 10 !important;
+     padding: 0 80px !important;
+     width: 100% !important;
+     max-width: 1400px !important;
+     margin: 0 auto !important;
+   }
+   
+   .hero-badge {
+     color: var(--gold) !important;
+     font-weight: 700 !important;
+     text-transform: uppercase;
+     letter-spacing: 3px !important;
+     font-size: 12px !important;
+     display: block !important;
+     margin-bottom: 20px !important;
+   }
+   
+   .luxury-headline {
+     font-size: clamp(3rem, 6vw, 5rem) !important;
+     line-height: 1.1 !important;
+     margin-bottom: 25px !important;
+     text-transform: uppercase;
+   }
+   
+   /* Hero text always stays white since it sits over an image */
+   .hero-container .luxury-headline,
+   .hero-container h1,
+   .hero-content-left h1 {
+     color: #ffffff !important;
+   }
+   
+   /* =================================================
+      5. BUTTONS & TRUST BAR
+      ================================================= */
+   .btn-luxury-gold, .nav-register {
+     background: var(--gold-gradient) !important;
+     color: #000000 !important;
+     padding: 16px 36px !important;
+     border-radius: 50px !important;
+     font-weight: 800 !important;
+     text-decoration: none !important;
+     display: inline-block !important;
+     letter-spacing: 1px;
+   }
+   
+   .btn-luxury-outline {
+     border: 1.5px solid #ffffff !important;
+     color: #ffffff !important;
+     padding: 16px 36px !important;
+     border-radius: 50px !important;
+     text-decoration: none !important;
+     display: inline-block !important;
+     letter-spacing: 1px;
+   }
+   
+   .trust-bar {
+     background: var(--trust-bar-bg) !important;
+     border-top: 1px solid var(--border-gold) !important;
+     border-bottom: 1px solid var(--border-gold) !important;
+     display: flex !important;
+     justify-content: center !important;
+     gap: 50px !important;
+     padding: 25px !important;
+     flex-wrap: wrap !important;
+     transition: background 0.3s ease !important;
+   }
+   
+   .trust-item {
+     color: var(--gold) !important;
+     font-size: 12px !important;
+     font-weight: 800 !important;
+     letter-spacing: 2px !important;
+     display: flex !important;
+     align-items: center !important;
+     gap: 10px !important;
+   }
+   
+   /* =================================================
+      6. CHOOSE YOUR DIVISION
+      ================================================= */
+   .essence-section {
+     padding: 100px 60px;
+     background: var(--bg-primary);
+     transition: background 0.3s ease;
+   }
+   
+   .essence-header {
+     text-align: center;
+     margin-bottom: 60px;
+   }
+   
+   .essence-title {
+     font-size: 2.5rem !important;
+     letter-spacing: 3px;
+   }
+   
+   .essence-grid {
+     display: grid;
+     grid-template-columns: 1fr 1fr;
+     gap: 40px;
+     max-width: 1200px;
+     margin: 0 auto;
+   }
+   
+   .essence-card {
+     position: relative;
+     height: 450px;
+     border-radius: 12px;
+     overflow: hidden;
+     border: 1px solid var(--border-gold);
+     transition: border 0.3s ease;
+   }
+   
+   .card-img-wrapper {
+     position: absolute;
+     inset: 0;
+     z-index: 1;
+   }
+   
+   .card-video {
+     width: 100%;
+     height: 100%;
+     object-fit: cover;
+     filter: brightness(0.6);
+   }
+   
+   .card-text {
+     position: absolute;
+     bottom: 0;
+     left: 0;
+     width: 100%;
+     padding: 40px;
+     z-index: 10;
+     background: var(--card-gradient);
+   }
+   
+   /* Card text always white since it's over a video */
+   .card-text h3,
+   .card-text p {
+     color: #ffffff !important;
+   }
+   
+   .card-num {
+     font-family: 'Playfair Display', serif;
+     font-size: 2rem;
+     color: var(--gold);
+     font-weight: 700;
+     margin-bottom: 10px;
+     display: block;
+   }
+   
+   /* =================================================
+      7. HOW WE PROTECT YOU
+      ================================================= */
+   .op-blueprint {
+     background: var(--blueprint-bg);
+     padding: 100px 60px;
+     transition: background 0.3s ease;
+   }
+   
+   .central-title {
+     text-align: center;
+     font-size: 2.8rem !important;
+     margin-bottom: 60px !important;
+   }
+   
+   .timeline-wrapper {
+     display: grid;
+     grid-template-columns: repeat(3, 1fr);
+     gap: 30px;
+     max-width: 1200px;
+     margin: 0 auto;
+   }
+   
+   .blueprint-card {
+     background: var(--bg-card);
+     padding: 40px 30px;
+     border-radius: 12px;
+     border-top: 3px solid var(--gold);
+     text-align: center;
+     transition: transform 0.3s ease, background 0.3s ease;
+     box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+   }
+   
+   .blueprint-card:hover {
+     transform: translateY(-10px);
+   }
+   
+   .icon-box {
+     font-family: 'Playfair Display', serif;
+     font-size: 2.5rem;
+     color: var(--gold);
+     margin-bottom: 20px;
+     font-weight: 700;
+   }
+   
+   .blueprint-info h4 {
+     font-size: 1.5rem !important;
+     margin-bottom: 15px;
+     letter-spacing: 1px;
+     color: var(--text-primary) !important;
+   }
+   
+   .blueprint-info p {
+     color: var(--text-secondary);
+     font-size: 1rem;
+     line-height: 1.6;
+   }
+   
+   /* =================================================
+      8. MUTUAL PROTECTION FRAMEWORK
+      ================================================= */
+   .protection-section {
+     background-color: var(--bg-primary);
+     padding: 100px 60px;
+     border-top: 1px solid var(--border-gold);
+     transition: background 0.3s ease;
+   }
+   
+   .protection-container {
+     max-width: 1300px;
+     margin: 0 auto;
+   }
+   
+   .protection-header {
+     text-align: center;
+     margin-bottom: 70px;
+   }
+   
+   .protection-subtitle {
+     color: var(--protection-subtitle);
+     font-size: 1.2rem;
+     max-width: 600px;
+     margin: 0 auto;
+   }
+   
+   .protection-grid {
+     display: grid;
+     grid-template-columns: 1fr 1fr;
+     gap: 40px;
+   }
+   
+   .protection-card {
+     padding: 50px;
+     border-radius: 12px;
+     position: relative;
+     overflow: hidden;
+     transition: transform 0.4s ease;
+   }
+   
+   .protection-card:hover {
+     transform: translateY(-8px);
+   }
+   
+   .client-card {
+     background-color: var(--bg-card);
+     border: 1px solid var(--border-gold-strong);
+     box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+   }
+   
+   .pro-card {
+     background: var(--gold-gradient);
+     box-shadow: 0 15px 35px rgba(197, 160, 89, 0.2);
+   }
+   
+   .protection-icon {
+     margin-bottom: 25px;
+   }
+   
+   .protection-title {
+     font-family: 'Playfair Display', serif;
+     font-size: 2rem;
+     margin-bottom: 30px;
+     text-transform: uppercase;
+     color: var(--text-primary);
+   }
+   
+   .pro-card .protection-title {
+     color: #0b0d17 !important;
+   }
+   
+   .protection-list {
+     list-style: none;
+     display: flex;
+     flex-direction: column;
+     gap: 25px;
+   }
+   
+   .protection-list li {
+     display: flex;
+     align-items: flex-start;
+     gap: 15px;
+     font-size: 1.05rem;
+     line-height: 1.6;
+   }
+   
+   .client-card .protection-list li {
+     color: var(--text-muted);
+   }
+   
+   .pro-list li {
+     color: #0b0d17;
+     font-weight: 500;
+   }
+   
+   /* =================================================
+      9. FOOTER
+      ================================================= */
+   .footer {
+     background: var(--bg-secondary);
+     padding: 60px 0;
+     text-align: center;
+     border-top: 1px solid var(--border-gold);
+     transition: background 0.3s ease;
+   }
+   
+   .footer-content {
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     gap: 20px;
+   }
+   
+   .footer-contact {
+     display: flex;
+     flex-direction: column;
+     gap: 5px;
+   }
+   
+   .contact-label {
+     color: var(--text-primary);
+     font-size: 12px;
+     letter-spacing: 2px;
+     font-weight: 600;
+   }
+   
+   .contact-email {
+     color: var(--gold);
+     text-decoration: none;
+     font-family: 'Playfair Display', serif;
+     font-size: 1.5rem;
+     font-weight: 700;
+     transition: color 0.3s;
+   }
+   
+   .contact-email:hover {
+     color: #fcf6ba;
+   }
+   
+   .footer-text {
+     color: var(--gold);
+     font-size: 11px;
+     letter-spacing: 4px;
+     text-transform: uppercase;
+     opacity: 0.6;
+     margin-top: 20px;
+   }
+   
+   /* =================================================
+      10. MOBILE RESPONSIVENESS
+      ================================================= */
+   @media (max-width: 900px) {
+     .essence-grid, .timeline-wrapper, .protection-grid { grid-template-columns: 1fr; }
+     .nav { padding: 20px !important; }
+     .nav-links { display: none !important; }
+     .hero-container { padding: 0 30px !important; }
+     .protection-section { padding: 80px 30px; }
+   }

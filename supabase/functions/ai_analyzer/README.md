@@ -1,0 +1,1 @@
+AI Analyzer function. Requires OPENAI_API_KEY. Sends image URL and description to OpenAI and returns diagnosis and estimate.

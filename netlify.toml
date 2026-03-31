@@ -1,0 +1,17 @@
+# netlify.toml — place this in your project ROOT folder
+
+[build]
+  functions = "netlify/functions"
+  # Change "public" below to wherever your frontend HTML lives (e.g. "dist" or "build")
+  publish = "public"
+
+# Clean URL redirects — your frontend keeps calling /api/... as before
+[[redirects]]
+  from = "/api/project-bot"
+  to = "/.netlify/functions/project-bot"
+  status = 200
+
+[[redirects]]
+  from = "/api/tts"
+  to = "/.netlify/functions/tts"
+  status = 200

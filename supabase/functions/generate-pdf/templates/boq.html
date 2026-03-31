@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <style>
+    body {
+      font-family: Helvetica, Arial, sans-serif;
+      padding: 40px;
+      color: #222;
+    }
+    h1 {
+      color: #6A0DAD;
+      border-bottom: 3px solid #B8860B;
+      padding-bottom: 10px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 25px;
+    }
+    th {
+      background: #6A0DAD;
+      color: white;
+      padding: 10px;
+      text-align: left;
+    }
+    td {
+      padding: 10px;
+      border-bottom: 1px solid #ddd;
+    }
+    .summary {
+      margin-top: 30px;
+      border-top: 3px solid #B8860B;
+      padding-top: 20px;
+    }
+    .summary div {
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+
+<h1>Bill of Quantities</h1>
+
+<h3>Project: {{project_name}}</h3>
+<h3>Contractor: {{contractor_name}}</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Description</th>
+      <th>Amount (ZAR)</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{table_rows}}
+  </tbody>
+</table>
+
+<div class="summary">
+  <div><strong>Subtotal:</strong> {{subtotal}}</div>
+  <div><strong>Project Broker Fee (20%):</strong> {{fee}}</div>
+  <div><strong>Total:</strong> {{total}}</div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,24 @@
+:root {
+    --bg-dark: #0b0b12;
+    --bg-light: #f7f7fb;
+  
+    --card-dark: #14141f;
+    --card-light: #ffffff;
+  
+    --text-dark: #f5f5f7;
+    --text-light: #0f0f17;
+  
+    --accent: #7f5af0;      /* Purple */
+    --accent-gold: #f4c430; /* Gold */
+  
+    --border-radius: 16px;
+    --shadow: 0 20px 40px rgba(0,0,0,0.35);
+  }
+  
+  body {
+    margin: 0;
+    font-family: "Inter", system-ui, sans-serif;
+    background: var(--bg-dark);
+    color: var(--text-dark);
+  }
+  

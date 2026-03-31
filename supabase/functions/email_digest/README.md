@@ -1,0 +1,1 @@
+Email digest function. Requires SENDGRID_API_KEY and SUPABASE keys. Deploy as an Edge Function or run as serverless cron.

@@ -1,0 +1,14 @@
+# Local Netlify folder
+.netlify
+node_modules
+
+# Environment variables
+.env.local
+.env
+
+# Build output
+dist
+
+# Mac system files
+.DS_Store
+.vercel
