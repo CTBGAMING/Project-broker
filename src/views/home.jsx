@@ -15,7 +15,7 @@ export default function Home() {
       <section className="hero-single">
         <div className="hero-bg-container">
           {/* Updated to .png to match your uploaded file */}
-          <img src="/edited-image.png" alt="Project Broker Hero" className="hero-img-bg" />
+          <img src="/edited-image.webp" alt="Project Broker Hero" className="hero-img-bg" />
           <div className="hero-overlay-premium" />
         </div>
 

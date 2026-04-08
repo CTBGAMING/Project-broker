@@ -629,6 +629,10 @@ function CustomerDashboard() {
     const deadline = new Date();
     deadline.setHours(deadline.getHours() + hours);
 
+    // 1. PULL THE LEAD FROM BROWSER MEMORY
+    const activeLeadRaw = sessionStorage.getItem("pb_active_lead");
+    const scoperLead = activeLeadRaw ? JSON.parse(activeLeadRaw) : null;
+
     const { data, error } = await supabase
       .from("projects")
       .insert([
@@ -659,6 +663,17 @@ function CustomerDashboard() {
               ? { sow_markdown: tenderData.sow_markdown, last_questions: tenderData.last_questions || [], updated_at: new Date().toISOString() }
               : null,
           },
+          
+          // 2. ATTACH THE SCOPER DATA DIRECTLY TO THE NEW COLUMNS
+          scoper_agent_id: scoperLead ? user.id : null, 
+          scoper_client_details: scoperLead ? {
+            agent_assisted: true,
+            customer_name: scoperLead.customer_name || "Self-Posted",
+            customer_phone: scoperLead.customer_phone || "N/A",
+            customer_email: scoperLead.customer_email || "N/A",
+            target_profit: scoperLead.estimated_profit || 0,
+            commission_due: Number(scoperLead.estimated_profit || 0) * 0.02
+          } : null
         },
       ])
       .select()

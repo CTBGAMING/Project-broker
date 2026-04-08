@@ -1,18 +1,22 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { supabase } from "../lib/supabase";
-import { Sun, Moon } from "lucide-react";
-import logoImage from "../assets/logo.png";
+import { Sun, Moon } from "lucide-react"; // Import icons
+
+// 🔥 THE FOOLPROOF IMPORT: This forces React to find the image in your assets folder
+import logoImage from "../assets/logo.png"; 
 
 export default function Navigation() {
   const navigate = useNavigate();
   const [session, setSession] = useState(null);
-  const [darkMode, setDarkMode] = useState(true); // always starts in dark mode
+  // Theme state
+  const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
 
-  // Apply theme to root element whenever it changes
   useEffect(() => {
-    document.documentElement.setAttribute("data-theme", darkMode ? "dark" : "light");
-  }, [darkMode]);
+    // Apply theme to document
+    document.documentElement.setAttribute("data-theme", theme);
+    localStorage.setItem("theme", theme);
+  }, [theme]);
 
   useEffect(() => {
     let isMounted = true;
@@ -33,6 +37,10 @@ export default function Navigation() {
     };
   }, []);
 
+  const toggleTheme = () => {
+    setTheme(theme === "light" ? "dark" : "light");
+  };
+
   async function handleLogout() {
     await supabase.auth.signOut();
     navigate("/", { replace: true });
@@ -45,16 +53,15 @@ export default function Navigation() {
       </Link>
 
       <div className="nav-links">
-        {/* Dark/Light Toggle — sits before auth links so it doesn't crowd logout/dashboard */}
-        <button
-          type="button"
-          onClick={() => setDarkMode((prev) => !prev)}
-          className="theme-toggle"
+        {/* THEME TOGGLE BUTTON */}
+        <button 
+          onClick={toggleTheme} 
+          className="theme-toggle-btn"
           aria-label="Toggle theme"
-          title={darkMode ? "Switch to light mode" : "Switch to dark mode"}
+          style={{ background: 'transparent', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', color: 'inherit' }}
         >
-          {darkMode ? <Sun size={16} /> : <Moon size={16} />}
-          {darkMode ? "Light" : "Dark"}
+          {/* If current theme is light, show Moon to switch to dark. If dark, show Sun to switch to light. */}
+          {theme === "light" ? <Moon size={20} /> : <Sun size={20} />}
         </button>
 
         {session ? (
@@ -62,11 +69,11 @@ export default function Navigation() {
             <Link to="/dashboard" className="nav-login">
               Dashboard
             </Link>
-            <button
-              type="button"
-              onClick={handleLogout}
-              className="nav-logout"
-              style={{ background: "transparent", border: "none", cursor: "pointer" }}
+            <button 
+              type="button" 
+              onClick={handleLogout} 
+              className="nav-logout" 
+              style={{ background: 'transparent', border: 'none', cursor: 'pointer' }}
             >
               Logout
             </button>

@@ -371,6 +371,10 @@ export default function EventCustomerDashboard() {
 
     setLoading(true);
 
+    // 1. PULL THE LEAD FROM BROWSER MEMORY
+    const activeLeadRaw = sessionStorage.getItem("pb_active_lead");
+    const scoperLead = activeLeadRaw ? JSON.parse(activeLeadRaw) : null;
+
     const { data, error } = await supabase
       .from("projects")
       .insert([
@@ -399,6 +403,17 @@ export default function EventCustomerDashboard() {
             expected_cost_high: mode === "ai" ? estimate?.high ?? null : null,
             expected_cost_confirmed: mode === "ai" ? pricingConfirmed : false,
           },
+          
+          // 2. ATTACH THE SCOPER DATA DIRECTLY TO THE NEW COLUMNS
+          scoper_agent_id: scoperLead ? user.id : null, 
+          scoper_client_details: scoperLead ? {
+            agent_assisted: true,
+            customer_name: scoperLead.customer_name || "Self-Posted",
+            customer_phone: scoperLead.customer_phone || "N/A",
+            customer_email: scoperLead.customer_email || "N/A",
+            target_profit: scoperLead.estimated_profit || 0,
+            commission_due: Number(scoperLead.estimated_profit || 0) * 0.02
+          } : null
         },
       ])
       .select()
@@ -1020,7 +1035,6 @@ function EventProjectChatBot({ user, currentForm, categoryDefs, onApplyDraft, on
       setMessages((prev) => [...prev, { role: "assistant", content: data.assistant_message }]);
 
       if (speakReplies && data.audioBase64) {
-        // ✨ Your requested audio reset logic:
         if (audioRef.current) {
           audioRef.current.pause();
           audioRef.current.currentTime = 0;
