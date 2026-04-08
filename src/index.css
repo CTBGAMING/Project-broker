@@ -151,7 +151,7 @@
      display: flex !important;
      align-items: center !important;
      overflow: hidden;
-     background-image: url('/hero-bg.png');
+     background-image: url('/hero-bg.webp');
      background-size: cover !important;
      background-position: center !important;
      background-repeat: no-repeat !important;
@@ -198,11 +198,11 @@
      text-transform: uppercase;
    }
    
-   /* Hero text always stays white since it sits over an image */
+   /* Hero text changes with light/dark mode */
    .hero-container .luxury-headline,
    .hero-container h1,
    .hero-content-left h1 {
-     color: #ffffff !important;
+     color: var(--text-primary) !important;
    }
    
    /* =================================================

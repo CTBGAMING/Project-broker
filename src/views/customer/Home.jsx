@@ -1,101 +1,186 @@
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { supabase } from "../../lib/supabase";
-import { Hammer, Sparkles, LogOut, Briefcase } from "lucide-react";
+import React from "react";
+import { Link } from "react-router-dom";
+import Navigation from "../../components/navigation";
+import Footer from "../../components/footer";
+import { ShieldCheck, HardHat, PartyPopper, Scale, Lock, CheckCircle } from "lucide-react";
 
-export default function CustomerHome() {
-  const navigate = useNavigate();
-  const [activeLead, setActiveLead] = useState(null);
-
-  useEffect(() => {
-    // Check if an agent just routed here from the Scoper Dashboard
-    const storedLead = sessionStorage.getItem("pb_active_lead");
-    if (storedLead) {
-      setActiveLead(JSON.parse(storedLead));
-    }
-  }, []);
-
-  const handleLogout = async () => {
-    sessionStorage.removeItem("pb_active_lead");
-    await supabase.auth.signOut();
-    navigate("/");
-  };
-
-  const handleReturnToDashboard = () => {
-    // Allows the agent to back out of the session and return to their agent portal
-    sessionStorage.removeItem("pb_active_lead");
-    navigate("/dashboard/scoper");
-  };
-
-  const handlePortalEntry = (route) => {
-    navigate(route);
-  };
-
+export default function Home() {
   return (
-    <div style={containerStyle}>
-      
-      {/* AGENT BANNER: Appears only if an active agent session is running */}
-      {activeLead && (
-        <div style={agentBannerStyle}>
-          <Briefcase size={16} />
-          <span>Agent Session Active: <strong>{activeLead.customer_name}</strong></span>
-          <button onClick={handleReturnToDashboard} style={cancelSessionBtn}>Cancel Session</button>
-        </div>
-      )}
+    <div className="page-wrapper">
+      <Navigation />
 
-      <button onClick={handleLogout} style={logoutBtnStyle}>
-        <LogOut size={16} /> Sign Out
-      </button>
-
-      {/* LEFT SIDE: CONSTRUCTION */}
-      <div 
-        style={panelStyle} 
-        onClick={() => handlePortalEntry("/customer/construction")}
-      >
-        <video style={videoStyle} autoPlay muted loop playsInline>
-          <source src="/hero.mp4" type="video/mp4" />
-        </video>
-        <div style={overlayDark} />
-        <div style={contentStyle}>
-          <div style={badgeStyle}><Hammer size={14} /> CONSTRUCTION</div>
-          <h1 style={titleStyle}>The Master<br />Builder</h1>
-          <p style={descStyle}>Renovations, repairs, and grand designs.</p>
-          <button style={goldBtnStyle}>{activeLead ? "Start Client Project" : "Enter Portal"}</button>
+      {/* =================================================
+          1. THE UNIFIED HERO
+          ================================================= */}
+      <section className="hero-single">
+        <div className="hero-bg-container">
+          <img src="/hero-bg.webp" alt="Project Broker Hero" className="hero-img-bg" />
+          <div className="hero-overlay-premium" />
         </div>
+
+        <div className="hero-container">
+          <div className="hero-content-left">
+            {/* Forced to white so it stays visible on the dark background */}
+            <h1 className="luxury-headline" style={{ color: '#ffffff' }}>
+              YOUR VISION, <br />
+              OUR EXPERT OVERSIGHT.
+            </h1>
+            {/* Forced to gold so it stays visible on the dark background */}
+            <p style={{ fontSize: '1.2rem', color: '#c5a059', marginBottom: '40px', maxWidth: '600px' }}>
+              Specializing in elite construction management and bespoke event production. 
+              We vet the pros, secure your funds, and guarantee the result.
+            </p>
+            <div style={{ display: 'flex', gap: '20px', flexWrap: 'wrap' }}>
+              <a href="#services" className="btn-luxury-gold">EXPLORE SERVICES</a>
+              <Link to="/auth/register" className="btn-luxury-outline">GET STARTED</Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* =================================================
+          2. THE TRUST BAR
+          ================================================= */}
+      <div className="trust-bar">
+        <div className="trust-item"><ShieldCheck size={20} /> 8+ YEARS INDUSTRY EXPERTISE</div>
+        <div className="trust-item"><Scale size={20} /> TRADESAFE ESCROW PROTECTED</div>
+        <div className="trust-item"><HardHat size={20} /> VETTED CONTRACTORS</div>
+        <div className="trust-item"><PartyPopper size={20} /> ELITE EVENT VENDORS</div>
       </div>
 
-      {/* RIGHT SIDE: EVENTS */}
-      <div 
-        style={{...panelStyle, borderLeft: '1px solid rgba(197, 160, 89, 0.2)'}} 
-        onClick={() => handlePortalEntry("/customer/events")}
-      >
-        <video style={videoStyle} autoPlay muted loop playsInline>
-          <source src="/events.mp4" type="video/mp4" />
-        </video>
-        <div style={overlayGoldTint} />
-        <div style={contentStyle}>
-          <div style={badgeStyle}><Sparkles size={14} /> EVENTS & PLANNING</div>
-          <h1 style={titleStyle}>The Elegant<br />Occasion</h1>
-          <p style={descStyle}>Weddings, corporate galas, and celebrations.</p>
-          <button style={goldBtnStyle}>{activeLead ? "Start Client Event" : "Enter Portal"}</button>
+      {/* =================================================
+          3. DUAL SERVICE FOCUS
+          ================================================= */}
+      <section id="services" className="essence-section">
+        <div className="essence-container">
+          <div className="essence-header">
+            <h2 className="essence-title">CHOOSE YOUR DIVISION</h2>
+          </div>
+
+          <div className="essence-grid">
+            <div className="essence-card">
+              <div className="card-img-wrapper">
+                <video className="card-video" autoPlay muted loop playsInline>
+                  <source src="/hero.mp4" type="video/mp4" />
+                </video>
+              </div>
+              <div className="card-text">
+                <span className="card-num">01</span>
+                <h3>Construction & Services</h3>
+                <p>From complex plumbing installations to full-scale renovations. Post your job and receive bids from verified contractors.</p>
+                <Link to="/auth/register" className="nav-register" style={{display: 'inline-block', marginTop: '20px'}}>Post a Project</Link>
+              </div>
+            </div>
+
+            <div className="essence-card">
+              <div className="card-img-wrapper">
+                <video className="card-video" autoPlay muted loop playsInline>
+                  <source src="/events.mp4" type="video/mp4" />
+                </video>
+              </div>
+              <div className="card-text">
+                <span className="card-num">02</span>
+                <h3>Luxury Event Planning</h3>
+                <p>Curating unforgettable moments. Book DJs, catering, and decor specialists with guaranteed financial security.</p>
+                <Link to="/auth/register" className="nav-register" style={{display: 'inline-block', marginTop: '20px'}}>Plan an Event</Link>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
+      </section>
+
+      {/* =================================================
+          4. THE BROKERAGE PROCESS
+          ================================================= */}
+      <section className="op-blueprint">
+        <div className="blueprint-container">
+          <h2 className="luxury-headline central-title">HOW THE BROKERAGE PROTECTS YOU</h2>
+          
+          <div className="timeline-wrapper">
+            <div className="blueprint-card">
+              <div className="icon-box">01</div>
+              <div className="blueprint-info">
+                <h4>Verified Matching</h4>
+                <p>Our 8 years of industry experience means we know how to spot a master. We only match you with pros who pass our rigorous vetting.</p>
+              </div>
+            </div>
+
+            <div className="blueprint-card">
+              <div className="icon-box">02</div>
+              <div className="blueprint-info">
+                <h4>Secure Funding</h4>
+                <p>Your money is held in a secure trust. It is never paid to the professional until you are satisfied with the completed milestone.</p>
+              </div>
+            </div>
+
+            <div className="blueprint-card">
+              <div className="icon-box">03</div>
+              <div className="blueprint-info">
+                <h4>Managed Execution</h4>
+                <p>Our brokers stay involved. If there's a dispute over scope or quality, we mediate to ensure the work is completed to your exact vision.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* =================================================
+          5. THE MUTUAL PROTECTION FRAMEWORK
+          ================================================= */}
+      <section className="protection-section">
+        <div className="protection-container">
+          <div className="protection-header">
+            <h2 className="luxury-headline">THE MUTUAL PROTECTION SHIELD</h2>
+            <p className="protection-subtitle">A balanced ecosystem where clients feel safe spending, and professionals feel safe working.</p>
+          </div>
+
+          <div className="protection-grid">
+            <div className="protection-card client-card">
+              <div className="protection-icon">
+                <Lock size={36} color="#ffffff" />
+              </div>
+              <h3 className="protection-title">For Our Clients</h3>
+              <ul className="protection-list">
+                <li>
+                  <CheckCircle size={18} color="#c5a059" />
+                  <span><strong>Zero Deposit Flight Risk:</strong> Your funds are held by TradeSafe Escrow, not paid directly upfront.</span>
+                </li>
+                <li>
+                  <CheckCircle size={18} color="#c5a059" />
+                  <span><strong>Milestone Control:</strong> You inspect and approve the work before any money is released.</span>
+                </li>
+                <li>
+                  <CheckCircle size={18} color="#c5a059" />
+                  <span><strong>Quality Assurance:</strong> You are protected from shoddy workmanship by our binding agreements.</span>
+                </li>
+              </ul>
+            </div>
+
+            <div className="protection-card pro-card">
+              <div className="protection-icon">
+                <ShieldCheck size={36} color="#0b0d17" />
+              </div>
+              <h3 className="protection-title" style={{color: '#0b0d17'}}>For Our Professionals</h3>
+              <ul className="protection-list pro-list">
+                <li>
+                  <CheckCircle size={18} color="#0b0d17" />
+                  <span><strong>Guaranteed Compensation:</strong> The client's funds are secured in escrow <em>before</em> you arrive.</span>
+                </li>
+                <li>
+                  <CheckCircle size={18} color="#0b0d17" />
+                  <span><strong>No Scope Creep:</strong> Clear contracts protect you from clients demanding extra free work.</span>
+                </li>
+                <li>
+                  <CheckCircle size={18} color="#0b0d17" />
+                  <span><strong>End to Unpaid Invoices:</strong> Once approved, funds are automatically released.</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <Footer />
     </div>
   );
 }
-
-// STYLES
-const containerStyle = { display: 'flex', height: '100vh', width: '100vw', overflow: 'hidden', background: '#0b0d17', position: 'relative' };
-const panelStyle = { flex: 1, position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', overflow: 'hidden', transition: 'all 0.3s' };
-const videoStyle = { position: 'absolute', width: '100%', height: '100%', objectFit: 'cover', zIndex: 1 };
-const overlayDark = { position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, rgba(11, 13, 23, 0.4), rgba(11, 13, 23, 0.9))', zIndex: 2 };
-const overlayGoldTint = { position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, rgba(11, 13, 23, 0.3), rgba(11, 13, 23, 0.85))', zIndex: 2 };
-const contentStyle = { position: 'relative', zIndex: 10, textAlign: 'center', padding: '0 40px', maxWidth: '500px' };
-const badgeStyle = { display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '6px 15px', borderRadius: '50px', background: 'rgba(197, 160, 89, 0.1)', border: '1px solid #c5a059', color: '#c5a059', fontSize: '11px', fontWeight: '800', letterSpacing: '2px', marginBottom: '20px', textTransform: 'uppercase' };
-const titleStyle = { fontFamily: "'Playfair Display', serif", fontSize: '3.5rem', lineHeight: '1.1', color: '#ffffff', marginBottom: '20px' };
-const descStyle = { color: '#94a3b8', fontSize: '15px', lineHeight: '1.6', marginBottom: '30px', fontWeight: '400' };
-const goldBtnStyle = { padding: "14px 40px", borderRadius: "50px", border: "none", cursor: "pointer", fontWeight: "800", fontSize: "13px", letterSpacing: "2px", textTransform: "uppercase", color: "#000", background: "linear-gradient(135deg, #b38728 0%, #fcf6ba 45%, #c5a059 55%, #b38728 100%)", boxShadow: "0 10px 20px rgba(0,0,0,0.3)" };
-const logoutBtnStyle = { position: 'absolute', top: '40px', right: '40px', zIndex: 100, background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(197, 160, 89, 0.3)', color: '#c5a059', padding: '10px 20px', borderRadius: '30px', cursor: 'pointer', fontWeight: '700', fontSize: '12px', display: 'flex', alignItems: 'center', gap: '8px', backdropFilter: 'blur(10px)', textTransform: 'uppercase' };
-
-const agentBannerStyle = { position: 'absolute', top: '40px', left: '40px', zIndex: 100, background: 'rgba(16, 185, 129, 0.1)', border: '1px solid #10b981', color: '#34d399', padding: '10px 20px', borderRadius: '30px', fontWeight: '600', fontSize: '13px', display: 'flex', alignItems: 'center', gap: '10px', backdropFilter: 'blur(10px)' };
-const cancelSessionBtn = { background: 'none', border: 'none', color: '#fff', textDecoration: 'underline', cursor: 'pointer', fontSize: '12px', marginLeft: '10px' };
