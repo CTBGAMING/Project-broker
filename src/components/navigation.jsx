@@ -66,9 +66,6 @@ export default function Navigation() {
 
         {session ? (
           <>
-            <Link to="/dashboard" className="nav-login">
-              Dashboard
-            </Link>
             <button 
               type="button" 
               onClick={handleLogout} 
