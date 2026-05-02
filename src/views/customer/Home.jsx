@@ -4,7 +4,7 @@ import Navigation from "../../components/navigation";
 import Footer from "../../components/footer";
 import { ShieldCheck, HardHat, PartyPopper, Scale, Lock, CheckCircle } from "lucide-react";
 
-export default function Home() {
+export default function CustomerHome() {
   return (
     <div className="page-wrapper">
       <Navigation />
@@ -20,19 +20,18 @@ export default function Home() {
 
         <div className="hero-container">
           <div className="hero-content-left">
-            {/* Forced to white so it stays visible on the dark background */}
             <h1 className="luxury-headline" style={{ color: '#ffffff' }}>
               YOUR VISION, <br />
               OUR EXPERT OVERSIGHT.
             </h1>
-            {/* Forced to gold so it stays visible on the dark background */}
             <p style={{ fontSize: '1.2rem', color: '#c5a059', marginBottom: '40px', maxWidth: '600px' }}>
-              Specializing in elite construction management and bespoke event production. 
+              Specializing in elite construction management and bespoke event production.
               We vet the pros, secure your funds, and guarantee the result.
             </p>
             <div style={{ display: 'flex', gap: '20px', flexWrap: 'wrap' }}>
               <a href="#services" className="btn-luxury-gold">EXPLORE SERVICES</a>
-              <Link to="/auth/register" className="btn-luxury-outline">GET STARTED</Link>
+              {/* ✅ Already logged in — go straight to dashboard */}
+              <Link to="/customer/construction" className="btn-luxury-outline">MY DASHBOARD</Link>
             </div>
           </div>
         </div>
@@ -68,7 +67,10 @@ export default function Home() {
                 <span className="card-num">01</span>
                 <h3>Construction & Services</h3>
                 <p>From complex plumbing installations to full-scale renovations. Post your job and receive bids from verified contractors.</p>
-                <Link to="/auth/register" className="nav-register" style={{display: 'inline-block', marginTop: '20px'}}>Post a Project</Link>
+                {/* ✅ FIXED: Logged-in customers go to their construction dashboard */}
+                <Link to="/customer/construction" className="nav-register" style={{ display: 'inline-block', marginTop: '20px' }}>
+                  Post a Project
+                </Link>
               </div>
             </div>
 
@@ -82,7 +84,10 @@ export default function Home() {
                 <span className="card-num">02</span>
                 <h3>Luxury Event Planning</h3>
                 <p>Curating unforgettable moments. Book DJs, catering, and decor specialists with guaranteed financial security.</p>
-                <Link to="/auth/register" className="nav-register" style={{display: 'inline-block', marginTop: '20px'}}>Plan an Event</Link>
+                {/* ✅ FIXED: Logged-in customers go to their events dashboard */}
+                <Link to="/customer/events" className="nav-register" style={{ display: 'inline-block', marginTop: '20px' }}>
+                  Plan an Event
+                </Link>
               </div>
             </div>
           </div>
@@ -95,7 +100,7 @@ export default function Home() {
       <section className="op-blueprint">
         <div className="blueprint-container">
           <h2 className="luxury-headline central-title">HOW THE BROKERAGE PROTECTS YOU</h2>
-          
+
           <div className="timeline-wrapper">
             <div className="blueprint-card">
               <div className="icon-box">01</div>
@@ -160,7 +165,7 @@ export default function Home() {
               <div className="protection-icon">
                 <ShieldCheck size={36} color="#0b0d17" />
               </div>
-              <h3 className="protection-title" style={{color: '#0b0d17'}}>For Our Professionals</h3>
+              <h3 className="protection-title" style={{ color: '#0b0d17' }}>For Our Professionals</h3>
               <ul className="protection-list pro-list">
                 <li>
                   <CheckCircle size={18} color="#0b0d17" />

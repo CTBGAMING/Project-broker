@@ -14,7 +14,6 @@ export default function Home() {
           ================================================= */}
       <section className="hero-single">
         <div className="hero-bg-container">
-          {/* Updated to .png to match your uploaded file */}
           <img src="/hero-bg.webp" alt="Project Broker Hero" className="hero-img-bg" />
           <div className="hero-overlay-premium" />
         </div>
@@ -26,7 +25,7 @@ export default function Home() {
               OUR EXPERT OVERSIGHT.
             </h1>
             <p style={{ fontSize: '1.2rem', color: '#c5a059', marginBottom: '40px', maxWidth: '600px' }}>
-              Specializing in elite construction management and bespoke event production. 
+              Specializing in elite construction management and bespoke event production.
               We vet the pros, secure your funds, and guarantee the result.
             </p>
             <div style={{ display: 'flex', gap: '20px', flexWrap: 'wrap' }}>
@@ -67,7 +66,10 @@ export default function Home() {
                 <span className="card-num">01</span>
                 <h3>Construction & Services</h3>
                 <p>From complex plumbing installations to full-scale renovations. Post your job and receive bids from verified contractors.</p>
-                <Link to="/auth/register" className="nav-register" style={{display: 'inline-block', marginTop: '20px'}}>Post a Project</Link>
+                {/* ✅ FIXED: Goes to register for public visitors */}
+                <Link to="/auth/register" className="nav-register" style={{ display: 'inline-block', marginTop: '20px' }}>
+                  Post a Project
+                </Link>
               </div>
             </div>
 
@@ -81,7 +83,10 @@ export default function Home() {
                 <span className="card-num">02</span>
                 <h3>Luxury Event Planning</h3>
                 <p>Curating unforgettable moments. Book DJs, catering, and decor specialists with guaranteed financial security.</p>
-                <Link to="/auth/register" className="nav-register" style={{display: 'inline-block', marginTop: '20px'}}>Plan an Event</Link>
+                {/* ✅ FIXED: Goes to register for public visitors */}
+                <Link to="/auth/register" className="nav-register" style={{ display: 'inline-block', marginTop: '20px' }}>
+                  Plan an Event
+                </Link>
               </div>
             </div>
           </div>
@@ -94,7 +99,7 @@ export default function Home() {
       <section className="op-blueprint">
         <div className="blueprint-container">
           <h2 className="luxury-headline central-title">HOW THE BROKERAGE PROTECTS YOU</h2>
-          
+
           <div className="timeline-wrapper">
             <div className="blueprint-card">
               <div className="icon-box">01</div>
@@ -159,7 +164,7 @@ export default function Home() {
               <div className="protection-icon">
                 <ShieldCheck size={36} color="#0b0d17" />
               </div>
-              <h3 className="protection-title" style={{color: '#0b0d17'}}>For Our Professionals</h3>
+              <h3 className="protection-title" style={{ color: '#0b0d17' }}>For Our Professionals</h3>
               <ul className="protection-list pro-list">
                 <li>
                   <CheckCircle size={18} color="#0b0d17" />

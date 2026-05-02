@@ -1,16 +1,6 @@
 import { useEffect, useState } from "react";
 import { supabase } from "../../lib/supabase";
-import { useNavigate, Navigate } from "react-router-dom"; // ✅ Added Navigate here
-
-// Customer landing
-import CustomerHome from "../customer/Home";
-
-// Dashboards
-import ContractorDashboard from "./ContractorDashboard";
-import InspectorDashboard from "./InspectorDashboard";
-import ScoperDashboard from "./scoper";
-import CorporateDashboard from "./corporate";
-import EventPlannerDashboard from "./EventPlannerDashboard";
+import { useNavigate, Navigate } from "react-router-dom";
 
 export default function DashboardRouter() {
   const [loading, setLoading] = useState(true);
@@ -59,28 +49,20 @@ export default function DashboardRouter() {
 
   switch (role) {
     case "admin":
-      // ✅ Using the safe, native React Router Navigate component to prevent loops
       return <Navigate to="/dashboard/admin" replace />;
-
     case "customer":
-      return <CustomerHome />;
-
+      return <Navigate to="/customer/home" replace />; // ✅ FIXED
     case "contractor":
-      return <ContractorDashboard />;
-
+      return <Navigate to="/dashboard/contractor" replace />;
     case "inspector":
-      return <InspectorDashboard />;
-
+      return <Navigate to="/dashboard/inspector" replace />;
     case "scoper":
-      return <ScoperDashboard />;
-
+      return <Navigate to="/dashboard/scoper" replace />; // ✅ FIXED
     case "corporate_user":
     case "corporate_admin":
-      return <CorporateDashboard />;
-
+      return <Navigate to="/dashboard/corporate" replace />;
     case "event_planner":
-      return <EventPlannerDashboard />;
-
+      return <Navigate to="/dashboard/event-planner" replace />;
     default:
       return (
         <div className="p-6">

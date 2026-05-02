@@ -28,6 +28,7 @@ import DashboardRouter from "./views/dashboards";
 import CustomerHome from "./views/customer/Home";
 import CustomerDashboard from "./views/dashboards/CustomerDashboard";
 import EventCustomerDashboard from "./views/dashboards/EventCustomerDashboard";
+import RFQCustomerDashboard from "./views/dashboards/RFQCustomerDashboard"; // 🔥 NEW: RFQ Dashboard Import
 import CustomerDisputes from "./views/customer/Disputes";
 
 /* =======================
@@ -63,8 +64,6 @@ import AdminScopers from "./views/dashboards/admin/AdminScopers";
 import ScoperAssignments from "./views/dashboards/admin/ScoperAssignments";
 import AdminSettings from "./views/dashboards/admin/AdminSettings";
 import AdminCoupons from "./views/dashboards/admin/AdminCoupons";
-
-// ✅ ADD THESE (you uploaded these files)
 import AdminApprovals from "./views/dashboards/admin/AdminApprovals";
 import AdminInspectionFees from "./views/dashboards/admin/AdminInspectionFees";
 
@@ -125,6 +124,11 @@ const router = createBrowserRouter([
       { path: "customer/construction/assistant", element: <CustomerDashboard /> },
       { path: "customer/events", element: <EventCustomerDashboard /> },
       { path: "customer/events/assistant", element: <EventCustomerDashboard /> },
+      
+      /* 🔥 NEW: Corporate RFQ Routes */
+      { path: "customer/rfq", element: <RFQCustomerDashboard /> },
+      { path: "customer/rfq/assistant", element: <RFQCustomerDashboard /> },
+      
       { path: "customer/disputes", element: <CustomerDisputes /> },
 
       /* ---------- PAYMENTS ---------- */
@@ -135,8 +139,6 @@ const router = createBrowserRouter([
 
       { path: "payment-success", element: <PaymentSuccess /> },
       { path: "payment-cancel", element: <PaymentCancel /> },
-
-      /* ✅ FIXED: removed leading slash so route actually matches */
       { path: "payment-failure", element: <PaymentFailure /> },
 
       /* ---------- INVOICES (TRADESAFE) ---------- */
@@ -157,10 +159,8 @@ const router = createBrowserRouter([
           { path: "assignments", element: <ScoperAssignments /> },
           { path: "projects", element: <AdminProjects /> },
           { path: "scopers", element: <AdminScopers /> },
-
           { path: "approvals", element: <AdminApprovals /> },
           { path: "inspection-fees", element: <AdminInspectionFees /> },
-
           { path: "coupons", element: <AdminCoupons /> },
           { path: "settings", element: <AdminSettings /> },
         ],
@@ -169,8 +169,7 @@ const router = createBrowserRouter([
   },
 ]);
 
+// 🔥 FIXED: Removed <React.StrictMode> to prevent the double-fire Auth refresh token loop
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
-    <RouterProvider router={router} />
-  </React.StrictMode>
+  <RouterProvider router={router} />
 );
